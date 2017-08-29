@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/pinsentlogo" />
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/add_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:id="@+id/bottleID"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/add_text"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_darkgray"
+            android:hint="ButtonID"
+            android:paddingLeft="40dp"
+            android:singleLine="true" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/add_text"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:padding="1dp"
+            android:src="@drawable/bottle" />
+
+        <TextView
+            android:id="@+id/hint_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bottleID"
+            android:layout_marginTop="2dp"
+            android:text="hint:ID on Bottle"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/qr_code_button"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/bottleID"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/qrcodebutton2x" />
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/qr_code_button"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/edittext_darkgray"
+            android:gravity="top"
+            android:hint="Notes"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp" />
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/note"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/green_button"
+            android:text="ADD"
+            android:textColor="#ffffff" />
+        
+    </RelativeLayout>
+
+</RelativeLayout>
