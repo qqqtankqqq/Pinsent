@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Pinsent</string>
+
+    <string name="api_url">http://10.28.120.17:3000</string>
+    <string name="register_url">/create/user</string>
+    <string name="login_url">/login</string>
+    <string name="create_device_url">/device/create</string>
+    <string name="create_sensor_url">/sensor/create</string>
+    <string name="status_url">/sensor/status</string>
+    <string name="update_url">/sensor/update</string>
+    <string name="deletes_sensor_url">/sensor/delete</string>
+    <string name="delete_device_url">/sensor/delete</string>
+
+
 </resources>
