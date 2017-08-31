@@ -1,5 +1,4 @@
-package tw.edu.imac.machanreceiptmanage.core;
-
+package com.pinsent.user.pinsent.core;
 import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;

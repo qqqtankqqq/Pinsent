@@ -1,4 +1,4 @@
-package tw.edu.imac.machanreceiptmanage.core;
+package com.pinsent.user.pinsent.core;
 
 /**
  * Created by 5*N on 2017/2/9.
