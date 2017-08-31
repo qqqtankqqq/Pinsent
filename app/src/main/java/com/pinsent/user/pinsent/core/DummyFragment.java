@@ -1,4 +1,4 @@
-package tw.edu.imac.machanreceiptmanage.core;
+package com.pinsent.user.pinsent.core;
 
 import android.app.Fragment;
 import android.graphics.Color;

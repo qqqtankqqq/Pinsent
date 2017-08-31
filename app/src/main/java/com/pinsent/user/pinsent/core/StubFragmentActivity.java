@@ -1,4 +1,4 @@
-package tw.edu.imac.machanreceiptmanage.core;
+package com.pinsent.user.pinsent.core;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

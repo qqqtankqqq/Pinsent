@@ -6,6 +6,7 @@ import com.pinsent.user.pinsent.activity.AddBottleActivity;
 import com.pinsent.user.pinsent.activity.BottleListActivity;
 import com.pinsent.user.pinsent.activity.LoginActivity;
 import com.pinsent.user.pinsent.activity.SignUpActivity;
+import com.pinsent.user.pinsent.core.SeparateDeveloperActivity;
 
 /**
  * Created by Ameng on 2015/12/14.
