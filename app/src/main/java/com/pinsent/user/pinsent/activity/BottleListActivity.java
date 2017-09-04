@@ -31,7 +31,7 @@ public class BottleListActivity extends AppCompatActivity {
         mListSetting = (ImageView) findViewById(R.id.list_setting);
         mListRecycleListView = (RecyclerView) findViewById(R.id.list_recycleListView);
 
-        mListAdapter = new BottleListAdpater(activity);
+        mListAdapter = new BottleListAdpater(null,getLayoutInflater());
 
         mListRecycleListView.setLayoutManager(new LinearLayoutManager(activity));
         mListRecycleListView.setAdapter(mListAdapter);
