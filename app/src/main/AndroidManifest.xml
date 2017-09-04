@@ -22,7 +22,9 @@
         <activity
             android:name=".activity.BottleListActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".activity.BottleDoubleListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".temporarydevelop.TemporaryDevelopActivity"
             android:screenOrientation="portrait">
