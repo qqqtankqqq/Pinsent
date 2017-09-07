@@ -31,10 +31,10 @@ public class BottleListActivity extends AppCompatActivity {
         mListSetting = (ImageView) findViewById(R.id.list_setting);
         mListRecycleListView = (RecyclerView) findViewById(R.id.list_recycleListView);
 
-        mListAdapter = new BottleListAdpater(null,getLayoutInflater());
+//        mListAdapter = new BottleListAdpater(null,null);
 
-        mListRecycleListView.setLayoutManager(new LinearLayoutManager(activity));
-        mListRecycleListView.setAdapter(mListAdapter);
+//        mListRecycleListView.setLayoutManager(new LinearLayoutManager(activity));
+//        mListRecycleListView.setAdapter(mListAdapter);
 
     }
 }

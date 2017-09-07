@@ -9,10 +9,15 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.pinsent.user.pinsent.R;
 import com.pinsent.user.pinsent.activity.BottleDoubleListActivity;
 import com.pinsent.user.pinsent.core.DpToPx;
+import com.pinsent.user.pinsent.model.DataStruct;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by cheng on 2017/8/31.
@@ -22,18 +27,18 @@ public class BottleDoubleListAdapter extends BaseExpandableListAdapter {
     private BottleDoubleListActivity activity;
     private RecyclerView mListRecycleListView;
     private DpToPx dpToPx;
-    private BottleListAdpater adpater;
     private ImageView imageView;
     private boolean expansion[]={false,false};
-    public BottleDoubleListAdapter(BottleDoubleListActivity activity, DpToPx dpToPx, BottleListAdpater adpater) {
+    private ArrayList<HashMap<String,ArrayList<DataStruct>>> dataList;
+    public BottleDoubleListAdapter(BottleDoubleListActivity activity, DpToPx dpToPx,ArrayList dataList) {
         this.activity=activity;
         this.dpToPx=dpToPx;
-        this.adpater=adpater;
+        this.dataList=dataList;
     }
 
     @Override
     public int getGroupCount() {
-        return 2;
+        return dataList.size();
     }
 
     @Override
@@ -70,6 +75,7 @@ public class BottleDoubleListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
 
         view=activity.getLayoutInflater().inflate(R.layout.list_group_item,viewGroup,false);
+        ((TextView)view.findViewById(R.id.item_group_title)).setText(String.valueOf(dataList.get(i).get("title")));
         imageView=(ImageView)view.findViewById(R.id.item_group_expansion);
         if (expansion[i]){
             imageView.setImageResource(R.mipmap.ic_right);
@@ -81,7 +87,7 @@ public class BottleDoubleListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-
+        BottleListAdpater adpater= new BottleListAdpater(activity,dataList.get(i).get("data"),i);
         view=activity.getLayoutInflater().inflate(R.layout.list_list_child,viewGroup,false);
         ((RecyclerView)view.findViewById(R.id.list)).setAdapter(adpater);
         ((RecyclerView)view.findViewById(R.id.list)).setLayoutManager(new LinearLayoutManager(activity));
