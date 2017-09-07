@@ -6,9 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.pinsent.user.pinsent.R;
+import com.pinsent.user.pinsent.activity.BottleDoubleListActivity;
 import com.pinsent.user.pinsent.activity.BottleDoubleListContent;
+import com.pinsent.user.pinsent.model.DataStruct;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by hong on 2017/8/29.
@@ -17,11 +23,14 @@ import com.pinsent.user.pinsent.activity.BottleDoubleListContent;
 public class BottleListAdpater extends RecyclerView.Adapter<BottleListAdpater.ItemView> {
     private BottleDoubleListContent itemClick;
     private LayoutInflater layoutInflater;
-    
-    
-    public BottleListAdpater(BottleDoubleListContent itemClick,LayoutInflater layoutInflater){
-        this.layoutInflater=layoutInflater;
-        this.itemClick=itemClick;
+    private ArrayList<DataStruct> dataList;
+    private int groupPosition;
+
+    public BottleListAdpater(BottleDoubleListActivity activity, ArrayList dataList,int groupPosition){
+        layoutInflater=activity.getLayoutInflater();
+        this.itemClick=activity;
+        this.dataList=dataList;
+        this.groupPosition=groupPosition;
     }
     @Override
     public ItemView onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,14 +41,18 @@ public class BottleListAdpater extends RecyclerView.Adapter<BottleListAdpater.It
 
     @Override
     public void onBindViewHolder(ItemView holder, int position) {
-        holder.itemView.setTag(position);
+        ((TextView)holder.itemView.findViewById(R.id.list_id)).setText(dataList.get(position).getContainerName());
+        HashMap hashMap=new HashMap();
+        hashMap.put("group",groupPosition);
+        hashMap.put("child",position);
+        holder.itemView.setTag(hashMap);
         holder.itemView.setOnClickListener(onClick);
         holder.itemView.setOnLongClickListener(onLongClick);
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return dataList.size();
     }
 
     protected class ItemView extends RecyclerView.ViewHolder {

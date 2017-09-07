@@ -9,4 +9,5 @@ import android.view.View;
 public interface BottleDoubleListContent {
     void onChildClick(View v);
     void onChildLongClick(View v);
+    void onGroupDialogCallBack(String type);
 }
