@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/pinsentlogo" />
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/problem_feedback_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="問題回報："
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:id="@+id/problem_feedback_edit_text"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/problem_feedback_text"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_darkgray"
+            android:gravity="start"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/process_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/problem_feedback_edit_text"
+            android:layout_marginTop="10dp"
+            android:text="我們將儘快為您處理!"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/option_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/process_text"
+            android:layout_marginTop="5dp"
+            android:text="意見回饋："
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:id="@+id/option_feedback_edit_text"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/option_feedback"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_darkgray"
+            android:gravity="start"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/sent_button"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/option_feedback_edit_text"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/green_button"
+            android:text="SENT"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

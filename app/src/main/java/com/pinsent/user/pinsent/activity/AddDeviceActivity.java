@@ -9,11 +9,11 @@ import com.pinsent.user.pinsent.R;
  * Created by hong on 2017/8/25.
  */
 
-public class AddBottleActivity extends AppCompatActivity {
+public class AddDeviceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_button);
+        setContentView(R.layout.activity_add_device);
     }
 }
