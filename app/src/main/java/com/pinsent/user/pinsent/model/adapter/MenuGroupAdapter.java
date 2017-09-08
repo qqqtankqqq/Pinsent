@@ -73,8 +73,10 @@ public class MenuGroupAdapter extends BaseExpandableListAdapter {
         ((TextView)view.findViewById(R.id.item_group_title)).setText(String.valueOf(dataList.get(i).get("title")));
         imageView=(ImageView)view.findViewById(R.id.item_group_expansion);
         if (expansion[i]){
+            view.findViewById(R.id.layout).setBackgroundResource(R.drawable.list_group_expend);
             imageView.setImageResource(R.mipmap.ic_right);
         }else{
+            view.findViewById(R.id.layout).setBackgroundResource(R.drawable.list_group_normal);
             imageView.setImageResource(R.mipmap.ic_down);
         }
 
