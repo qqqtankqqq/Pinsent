@@ -1,7 +1,5 @@
 package com.pinsent.user.pinsent.model.adapter;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pinsent.user.pinsent.R;
-import com.pinsent.user.pinsent.activity.BottleDoubleListActivity;
-import com.pinsent.user.pinsent.activity.BottleDoubleListContent;
+import com.pinsent.user.pinsent.activity.MenuActivity;
+import com.pinsent.user.pinsent.activity.MenuContent;
 import com.pinsent.user.pinsent.model.DataStruct;
 
 import java.util.ArrayList;
@@ -20,13 +18,13 @@ import java.util.HashMap;
  * Created by hong on 2017/8/29.
  */
 
-public class BottleListAdpater extends RecyclerView.Adapter<BottleListAdpater.ItemView> {
-    private BottleDoubleListContent itemClick;
+public class MenuChildAdpater extends RecyclerView.Adapter<MenuChildAdpater.ItemView> {
+    private MenuContent itemClick;
     private LayoutInflater layoutInflater;
     private ArrayList<DataStruct> dataList;
     private int groupPosition;
 
-    public BottleListAdpater(BottleDoubleListActivity activity, ArrayList dataList,int groupPosition){
+    public MenuChildAdpater(MenuActivity activity, ArrayList dataList, int groupPosition){
         layoutInflater=activity.getLayoutInflater();
         this.itemClick=activity;
         this.dataList=dataList;
@@ -56,8 +54,6 @@ public class BottleListAdpater extends RecyclerView.Adapter<BottleListAdpater.It
     }
 
     protected class ItemView extends RecyclerView.ViewHolder {
- 
-        
         public ItemView(View itemView) {
             super(itemView);
        

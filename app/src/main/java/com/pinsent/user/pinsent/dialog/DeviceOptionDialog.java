@@ -10,8 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pinsent.user.pinsent.R;
-import com.pinsent.user.pinsent.activity.BottleDoubleListActivity;
-import com.pinsent.user.pinsent.activity.BottleDoubleListContent;
+import com.pinsent.user.pinsent.activity.MenuActivity;
+import com.pinsent.user.pinsent.activity.MenuContent;
 
 /**
  * Created by cheng on 2017/9/5.
@@ -21,7 +21,7 @@ public class DeviceOptionDialog extends DialogFragment {
     private TextView addTextView;
     private TextView deleteTextView;
     private Bundle bundle;
-    private BottleDoubleListContent callback;
+    private MenuContent callback;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -35,14 +35,16 @@ public class DeviceOptionDialog extends DialogFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         bundle=getArguments();
-        callback=(BottleDoubleListActivity)getActivity();
+        callback=(MenuActivity)getActivity();
         addTextView.setOnClickListener(addClick);
         deleteTextView.setOnClickListener(deleteClick);
     }
     View.OnClickListener addClick=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(),"新增",Toast.LENGTH_SHORT).show();
+            ContainerAddDialog containerAddDialog=new ContainerAddDialog();
+            containerAddDialog.setArguments(bundle);
+            containerAddDialog.show(getFragmentManager(),ContainerAddDialog.class.getSimpleName());
             DeviceOptionDialog.this.dismiss();
         }
     };

@@ -11,10 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pinsent.user.pinsent.R;
-import com.pinsent.user.pinsent.core.DpToPx;
+import com.pinsent.user.pinsent.dialog.ContainerOptionDialog;
 import com.pinsent.user.pinsent.dialog.DeviceOptionDialog;
 import com.pinsent.user.pinsent.model.DataStruct;
-import com.pinsent.user.pinsent.model.adapter.BottleDoubleListAdapter;
+import com.pinsent.user.pinsent.model.adapter.MenuGroupAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,15 +23,15 @@ import java.util.HashMap;
  * Created by cheng on 2017/8/31.
  */
 
-public class BottleDoubleListActivity extends AppCompatActivity implements BottleDoubleListContent{
+public class MenuActivity extends AppCompatActivity implements MenuContent {
     private ExpandableListView listView;
     private ImageView mListSetting;
-    private BottleDoubleListAdapter mListAdapter;
+    private MenuGroupAdapter mListAdapter;
     private ArrayList<HashMap<String,ArrayList<DataStruct>>> dataList;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bottle_double_list);
+        setContentView(R.layout.activity_menu);
         simulation();
         findview();
         setAdapter();
@@ -64,8 +64,9 @@ public class BottleDoubleListActivity extends AppCompatActivity implements Bottl
         mListSetting = (ImageView) findViewById(R.id.list_setting);
     }
     private void setAdapter(){
-        mListAdapter=new BottleDoubleListAdapter(this,new DpToPx(this),dataList);
+        mListAdapter=new MenuGroupAdapter(this,dataList);
         listView.setAdapter(mListAdapter);
+        listView.setGroupIndicator(null);
         listView.setOnGroupClickListener(onGroupClick);
         listView.setOnItemLongClickListener(onGroupLongClick);
     }
@@ -92,7 +93,7 @@ public class BottleDoubleListActivity extends AppCompatActivity implements Bottl
             DeviceOptionDialog addDeviceDialog=new DeviceOptionDialog();
             Bundle bundle=new Bundle();
             bundle.putSerializable("data",dataList);
-            bundle.putInt("position",groupPositionCount);
+            bundle.putInt("group",groupPositionCount);
             addDeviceDialog.setArguments(bundle);
             addDeviceDialog.show(getFragmentManager(),DeviceOptionDialog.class.getSimpleName());
             return true;
@@ -105,7 +106,13 @@ public class BottleDoubleListActivity extends AppCompatActivity implements Bottl
 
     @Override
     public void onChildLongClick(View v) {
-        ((TextView)v.findViewById(R.id.list_id)).setText("群組："+((HashMap)v.getTag()).get("group")+" 容器："+((HashMap)v.getTag()).get("child")+"long");
+        ContainerOptionDialog containerOptionDialog=new ContainerOptionDialog();
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("data",dataList);
+        bundle.putInt("group",(int)((HashMap)v.getTag()).get("group"));
+        bundle.putInt("child",(int)((HashMap)v.getTag()).get("child"));
+        containerOptionDialog.setArguments(bundle);
+        containerOptionDialog.show(getFragmentManager(),ContainerOptionDialog.class.getSimpleName());
     }
 
     @Override

@@ -16,10 +16,7 @@
             android:name=".activity.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.BottleListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.BottleDoubleListActivity"
+            android:name=".activity.MenuActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AddDeviceActivity"
