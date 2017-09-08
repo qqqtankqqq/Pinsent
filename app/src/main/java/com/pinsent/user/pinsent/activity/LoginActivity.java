@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         mApi.setOnLogin(onLogin);
 
         if (!mLoginPreferences.getFirst().toString().trim().isEmpty()) {
-            ActivityLauncher.go(activity, BottleDoubleListActivity.class, null);
+            ActivityLauncher.go(activity, MenuActivity.class, null);
             finish();
         }
     }
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (message.equals("成功")) {
                     mLoginPreferences.saveFirst("true");
                     mLoginPreferences.saveUserId(jsonObject.getString("userID"));
-                    ActivityLauncher.go(activity, BottleDoubleListActivity.class, null);
+                    ActivityLauncher.go(activity, MenuActivity.class, null);
                     finish();
                 } else if (message.equals("查無此用戶")) {
                     ToastCreater.makeText(activity, "查無此用戶", Toast.LENGTH_SHORT);
