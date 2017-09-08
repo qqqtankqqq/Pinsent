@@ -51,6 +51,7 @@
             android:background="@drawable/edittext_darkgray"
             android:hint="password"
             android:inputType="textPassword"
+            android:maxLength="16"
             android:paddingLeft="35dp"
             android:singleLine="true" />
 
@@ -90,7 +91,7 @@
             android:background="@drawable/yellow_button"
             android:text="SIGN UP"
             android:textColor="#ffffff" />
-  
+
     </RelativeLayout>
 
 </RelativeLayout>
