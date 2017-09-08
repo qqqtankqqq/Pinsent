@@ -15,52 +15,63 @@
         android:id="@+id/layout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/add_text"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/device_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Device"
-            android:textColor="#ffffff" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/add_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="DEVICE"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/qr_code_button"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/qrcodebutton2x" />
+
+        </RelativeLayout>
+
 
         <EditText
             android:id="@+id/device_id"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:layout_below="@id/add_text"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/device_layout"
+            android:layout_marginTop="1dp"
             android:background="@drawable/edittext_darkgray"
-            android:hint="DeviceID"
-            android:paddingLeft="40dp"
+            android:hint="ID"
+            android:paddingLeft="30dp"
             android:singleLine="true" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/add_text"
+            android:layout_below="@+id/device_layout"
             android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:padding="1dp"
             android:src="@drawable/bottle" />
-
-        <Button
-            android:id="@+id/qr_code_button"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/device_id"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/qrcodebutton2x" />
 
         <EditText
             android:id="@+id/device_note"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:layout_below="@id/qr_code_button"
+            android:layout_below="@id/device_id"
             android:layout_marginTop="10dp"
             android:background="@drawable/edittext_darkgray"
-            android:hint="Note"
+            android:hint="內容物"
             android:paddingLeft="10dp"
             android:singleLine="true" />
 

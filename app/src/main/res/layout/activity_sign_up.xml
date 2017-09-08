@@ -64,7 +64,7 @@
             android:layout_below="@id/sign_up_account"
             android:layout_marginTop="10dp"
             android:background="@drawable/edittext_darkgray"
-            android:hint="password"
+            android:hint="Password"
             android:inputType="textPassword"
             android:maxLength="16"
             android:paddingLeft="35dp"
