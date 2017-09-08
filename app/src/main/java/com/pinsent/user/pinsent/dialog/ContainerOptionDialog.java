@@ -17,6 +17,7 @@ import com.pinsent.user.pinsent.R;
 public class ContainerOptionDialog extends DialogFragment{
     private TextView update;
     private TextView delete;
+    private Bundle bundle;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class ContainerOptionDialog extends DialogFragment{
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        bundle=getArguments();
         update.setOnClickListener(updateClick);
         delete.setOnClickListener(deleteClick);
     }

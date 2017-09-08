@@ -3,8 +3,7 @@ package com.pinsent.user.pinsent.temporarydevelop;
 import android.os.Bundle;
 
 import com.pinsent.user.pinsent.activity.AddDeviceActivity;
-import com.pinsent.user.pinsent.activity.BottleDoubleListActivity;
-import com.pinsent.user.pinsent.activity.BottleListActivity;
+import com.pinsent.user.pinsent.activity.MenuActivity;
 import com.pinsent.user.pinsent.activity.LoginActivity;
 import com.pinsent.user.pinsent.activity.SignUpActivity;
 import com.pinsent.user.pinsent.core.SeparateDeveloperActivity;
@@ -22,8 +21,7 @@ public class TemporaryDevelopActivity extends SeparateDeveloperActivity {
         // Activity
         addActivityButton(LoginActivity.class, null);
         addActivityButton(SignUpActivity.class, null);
-        addActivityButton(BottleListActivity.class, null);
-        addActivityButton(BottleDoubleListActivity.class,null);
+        addActivityButton(MenuActivity.class,null);
         addActivityButton(AddDeviceActivity.class,null);
     }
 }

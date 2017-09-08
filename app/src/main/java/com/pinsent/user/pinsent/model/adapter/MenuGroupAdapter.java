@@ -1,9 +1,7 @@
 package com.pinsent.user.pinsent.model.adapter;
 
-import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -12,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pinsent.user.pinsent.R;
-import com.pinsent.user.pinsent.activity.BottleDoubleListActivity;
+import com.pinsent.user.pinsent.activity.MenuActivity;
 import com.pinsent.user.pinsent.core.DpToPx;
 import com.pinsent.user.pinsent.model.DataStruct;
 
@@ -23,16 +21,13 @@ import java.util.HashMap;
  * Created by cheng on 2017/8/31.
  */
 
-public class BottleDoubleListAdapter extends BaseExpandableListAdapter {
-    private BottleDoubleListActivity activity;
-    private RecyclerView mListRecycleListView;
-    private DpToPx dpToPx;
+public class MenuGroupAdapter extends BaseExpandableListAdapter {
+    private MenuActivity activity;
     private ImageView imageView;
     private boolean expansion[]={false,false};
     private ArrayList<HashMap<String,ArrayList<DataStruct>>> dataList;
-    public BottleDoubleListAdapter(BottleDoubleListActivity activity, DpToPx dpToPx,ArrayList dataList) {
+    public MenuGroupAdapter(MenuActivity activity, ArrayList dataList) {
         this.activity=activity;
-        this.dpToPx=dpToPx;
         this.dataList=dataList;
     }
 
@@ -73,8 +68,8 @@ public class BottleDoubleListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-
         view=activity.getLayoutInflater().inflate(R.layout.list_group_item,viewGroup,false);
+
         ((TextView)view.findViewById(R.id.item_group_title)).setText(String.valueOf(dataList.get(i).get("title")));
         imageView=(ImageView)view.findViewById(R.id.item_group_expansion);
         if (expansion[i]){
@@ -82,12 +77,13 @@ public class BottleDoubleListAdapter extends BaseExpandableListAdapter {
         }else{
             imageView.setImageResource(R.mipmap.ic_down);
         }
+
         return view;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        BottleListAdpater adpater= new BottleListAdpater(activity,dataList.get(i).get("data"),i);
+        MenuChildAdpater adpater= new MenuChildAdpater(activity,dataList.get(i).get("data"),i);
         view=activity.getLayoutInflater().inflate(R.layout.list_list_child,viewGroup,false);
         ((RecyclerView)view.findViewById(R.id.list)).setAdapter(adpater);
         ((RecyclerView)view.findViewById(R.id.list)).setLayoutManager(new LinearLayoutManager(activity));

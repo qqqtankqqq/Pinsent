@@ -6,7 +6,7 @@ import android.view.View;
  * Created by cheng on 2017/9/4.
  */
 
-public interface BottleDoubleListContent {
+public interface MenuContent {
     void onChildClick(View v);
     void onChildLongClick(View v);
     void onGroupDialogCallBack(String type);
