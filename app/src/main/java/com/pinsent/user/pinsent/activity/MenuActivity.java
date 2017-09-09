@@ -1,10 +1,18 @@
 package com.pinsent.user.pinsent.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
@@ -22,6 +30,7 @@ import com.pinsent.user.pinsent.model.GetListThread;
 import com.pinsent.user.pinsent.model.LoginPreferences;
 import com.pinsent.user.pinsent.model.adapter.MenuGroupAdapter;
 import com.pinsent.user.pinsent.model.network.Api;
+import com.pinsent.user.pinsent.service.NotificationService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,6 +116,16 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
         dataList = new ArrayList<>();
         api = new Api(this);
         mLoginPreferences = new LoginPreferences(this);
+
+        Intent intentService = new Intent(this, NotificationService.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("userID", mLoginPreferences.getUserId());
+        intentService.putExtras(bundle);
+        startService(intentService);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                mMessageReceiver, new IntentFilter("notify"));
+
     }
 
     private void findview() {
@@ -234,6 +253,23 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
         api.getSensorStatus(data);
 
     }
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            NotificationManager manager = (NotificationManager)
+                    getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder builder =
+                    new NotificationCompat.Builder(MenuActivity.this);
+
+            builder.setContentText("有容器未滿30%，記得補充唷!")
+                    .setContentTitle("通知")
+                    .setSmallIcon(R.mipmap.ic_launcher_round);
+            Notification notification = builder.build();
+            manager.notify(1, notification);
+
+        }
+    };
 
 
     private void showToast(String str) {
