@@ -47,6 +47,7 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
         init();
         findview();
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -55,6 +56,7 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
         api.setOnSensorStatus(sensorStatus);
         api.getSensorStatus(data);
     }
+
     private void init() {
         dataList = new ArrayList<>();
         api = new Api(this);
@@ -70,13 +72,14 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
     }
 
     private void setAdapter() {
-        if(mListAdapter==null){
+        if (mListAdapter == null) {
             mListAdapter = new MenuGroupAdapter(this, dataList);
             listView.setAdapter(mListAdapter);
             listView.setGroupIndicator(null);
             listView.setOnGroupClickListener(onGroupClick);
             listView.setOnItemLongClickListener(onGroupLongClick);
-        }else{
+        } else {
+            mListAdapter.init();
             mListAdapter.notifyDataSetChanged();
         }
 
@@ -179,6 +182,7 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
 
     @Override
     public void onGroupDialogCallBack() {
+
         HashMap data = new HashMap();
         data.put("userID", mLoginPreferences.getUserId());
         api.getSensorStatus(data);
