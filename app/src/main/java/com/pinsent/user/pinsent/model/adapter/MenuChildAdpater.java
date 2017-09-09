@@ -9,10 +9,13 @@ import android.widget.TextView;
 import com.pinsent.user.pinsent.R;
 import com.pinsent.user.pinsent.activity.MenuActivity;
 import com.pinsent.user.pinsent.activity.MenuContent;
+import com.pinsent.user.pinsent.component.BarStripView;
 import com.pinsent.user.pinsent.model.DataStruct;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static android.R.attr.data;
 
 /**
  * Created by hong on 2017/8/29.
@@ -24,12 +27,13 @@ public class MenuChildAdpater extends RecyclerView.Adapter<MenuChildAdpater.Item
     private ArrayList<DataStruct> dataList;
     private int groupPosition;
 
-    public MenuChildAdpater(MenuActivity activity, ArrayList dataList, int groupPosition){
-        layoutInflater=activity.getLayoutInflater();
-        this.itemClick=activity;
-        this.dataList=dataList;
-        this.groupPosition=groupPosition;
+    public MenuChildAdpater(MenuActivity activity, ArrayList dataList, int groupPosition) {
+        layoutInflater = activity.getLayoutInflater();
+        this.itemClick = activity;
+        this.dataList = dataList;
+        this.groupPosition = groupPosition;
     }
+
     @Override
     public ItemView onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.list_child_item, parent, false);
@@ -39,13 +43,17 @@ public class MenuChildAdpater extends RecyclerView.Adapter<MenuChildAdpater.Item
 
     @Override
     public void onBindViewHolder(ItemView holder, int position) {
-        ((TextView)holder.itemView.findViewById(R.id.list_id)).setText(dataList.get(position).getContainerName());
-        HashMap hashMap=new HashMap();
-        hashMap.put("group",groupPosition);
-        hashMap.put("child",position);
+        ((TextView) holder.itemView.findViewById(R.id.list_id)).setText(dataList.get(position).getContainerName());
+        HashMap hashMap = new HashMap();
+        hashMap.put("group", groupPosition);
+        hashMap.put("child", position);
         holder.itemView.setTag(hashMap);
         holder.itemView.setOnClickListener(onClick);
         holder.itemView.setOnLongClickListener(onLongClick);
+        ((TextView) holder.itemView.findViewById(R.id.list_percent_text)).setText(String.valueOf(dataList.get(position).getPercent()) + "%")
+        ;
+        ((BarStripView) holder.itemView.findViewById(R.id.list_bartchart_item)).setdata(dataList.get(position).getPercent());
+
     }
 
     @Override
@@ -56,16 +64,16 @@ public class MenuChildAdpater extends RecyclerView.Adapter<MenuChildAdpater.Item
     protected class ItemView extends RecyclerView.ViewHolder {
         public ItemView(View itemView) {
             super(itemView);
-       
         }
     }
-    private View.OnClickListener onClick=new View.OnClickListener() {
+
+    private View.OnClickListener onClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             itemClick.onChildClick(view);
         }
     };
-    private View.OnLongClickListener onLongClick=new View.OnLongClickListener() {
+    private View.OnLongClickListener onLongClick = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View view) {
             itemClick.onChildLongClick(view);
