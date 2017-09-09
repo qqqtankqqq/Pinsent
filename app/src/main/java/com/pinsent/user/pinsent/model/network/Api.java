@@ -32,6 +32,7 @@ public class Api {
     private OnUpdateSensor onUpdateSensor;
     private OnDeleteDevice onDeleteDevice;
     private OnDeleteSensor onDeleteSensor;
+    private OnFeedBack onFeedBack;
 
     public Api(Context context) {
         this.context = context;
@@ -91,6 +92,12 @@ public class Api {
         void onError(VolleyError error);
     }
 
+    public interface OnFeedBack {
+        void onResponse(String response);
+
+        void onError(VolleyError error);
+    }
+
     public void setOnRegister(OnRegister onRegister) {
         this.onRegister = onRegister;
     }
@@ -121,6 +128,10 @@ public class Api {
 
     public void setOnDeleteSensor(OnDeleteSensor onDeleteSensor) {
         this.onDeleteSensor = onDeleteSensor;
+    }
+
+    public void setOnFeedBack(OnFeedBack onFeedBack) {
+        this.onFeedBack = onFeedBack;
     }
 
     public void register(final HashMap<String, String> params) {
@@ -416,6 +427,45 @@ public class Api {
                             onDeleteSensor.onResponse(response);
                         } else {
                             onDeleteSensor.onError(error);
+                        }
+                    }
+                }) {
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                SplitArray mSplitArray = new SplitArray();
+                String request = mSplitArray.getJsonString(params);
+                return request.getBytes();
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return mHeaderHashMap;
+            }
+        };
+        queue.add(stringRequest);
+    }
+
+    public void feedback(final HashMap<String, String> params) {
+        String function = context.getResources().getString(R.string.option_url);
+        String url = apiUrl + function;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        onFeedBack.onResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        NetworkResponse mNetworkResponse = error.networkResponse;
+                        if (mNetworkResponse != null && mNetworkResponse.data != null && mNetworkResponse.statusCode == 422) {
+                            String response = new String(mNetworkResponse.data);
+                            onFeedBack.onResponse(response);
+                        } else {
+                            onFeedBack.onError(error);
                         }
                     }
                 }) {

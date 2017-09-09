@@ -10,6 +10,9 @@
     <string name="update_url">/sensor/update</string>
     <string name="deletes_sensor_url">/sensor/delete</string>
     <string name="delete_device_url">/sensor/delete</string>
+    <string name="option_url">/customer/opinion</string>
+
+
 
     <string-array name="brand">
         <item>品牌A</item>
