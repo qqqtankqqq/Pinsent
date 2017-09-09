@@ -20,14 +20,25 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:src="@drawable/imac" />
-
-        <ImageView
-            android:id="@+id/list_setting"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/settings" />
+            android:layout_centerVertical="true">
+            <ImageView
+                android:id="@+id/list_add_device"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/ic_add_device"
+                android:layout_marginRight="8dp"/>
+            <ImageView
+                android:id="@+id/list_setting"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/feedback" />
+        </LinearLayout>
+
     </RelativeLayout>
 
     <ExpandableListView

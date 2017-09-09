@@ -9,19 +9,6 @@
     <string name="status_url">/sensor/status</string>
     <string name="update_url">/sensor/update</string>
     <string name="deletes_sensor_url">/sensor/delete</string>
-    <string name="delete_device_url">/sensor/delete</string>
+    <string name="delete_device_url">/device/delete</string>
 
-    <string-array name="brand">
-        <item>品牌A</item>
-        <item>品牌B</item>
-        <item>品牌C</item>
-        <item>品牌D</item>
-    </string-array>
-
-    <string-array name="container">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
 </resources>

@@ -24,13 +24,19 @@ import java.util.HashMap;
 public class MenuGroupAdapter extends BaseExpandableListAdapter {
     private MenuActivity activity;
     private ImageView imageView;
-    private boolean expansion[]={false,false};
+    private boolean expansion[];
     private ArrayList<HashMap<String,ArrayList<DataStruct>>> dataList;
     public MenuGroupAdapter(MenuActivity activity, ArrayList dataList) {
         this.activity=activity;
         this.dataList=dataList;
+        init();
     }
-
+    private void init(){
+        expansion=new boolean[dataList.size()];
+        for (int i=0;i<dataList.size();i++){
+            expansion[i]=false;
+        }
+    }
     @Override
     public int getGroupCount() {
         return dataList.size();
@@ -70,7 +76,7 @@ public class MenuGroupAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         view=activity.getLayoutInflater().inflate(R.layout.list_group_item,viewGroup,false);
 
-        ((TextView)view.findViewById(R.id.item_group_title)).setText(String.valueOf(dataList.get(i).get("title")));
+        ((TextView)view.findViewById(R.id.item_group_title)).setText(String.valueOf(dataList.get(i).get("name")));
         imageView=(ImageView)view.findViewById(R.id.item_group_expansion);
         if (expansion[i]){
             view.findViewById(R.id.layout).setBackgroundResource(R.drawable.list_group_expend);

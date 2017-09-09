@@ -9,9 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.pinsent.user.pinsent.R;
 import com.pinsent.user.pinsent.activity.MenuActivity;
 import com.pinsent.user.pinsent.activity.MenuContent;
+import com.pinsent.user.pinsent.model.LoginPreferences;
+import com.pinsent.user.pinsent.model.network.Api;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by cheng on 2017/9/5.
@@ -22,6 +28,8 @@ public class DeviceOptionDialog extends DialogFragment {
     private TextView deleteTextView;
     private Bundle bundle;
     private MenuContent callback;
+    private Api api;
+    private LoginPreferences preferences;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -34,10 +42,13 @@ public class DeviceOptionDialog extends DialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        api=new Api(getActivity());
         bundle=getArguments();
         callback=(MenuActivity)getActivity();
+        preferences=new LoginPreferences(getActivity());
         addTextView.setOnClickListener(addClick);
         deleteTextView.setOnClickListener(deleteClick);
+        api.setOnDeleteDevice(deleteDevice);
     }
     View.OnClickListener addClick=new View.OnClickListener() {
         @Override
@@ -51,8 +62,22 @@ public class DeviceOptionDialog extends DialogFragment {
     View.OnClickListener deleteClick=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(),"刪除",Toast.LENGTH_SHORT).show();
+            HashMap map=new HashMap();
+            map.put("userID",preferences.getUserId());
+            map.put("deviceID",((ArrayList<HashMap<String,String>>)bundle.get("data")).get(bundle.getInt("group")).get("id"));
+            api.deleteDevice(map);
             DeviceOptionDialog.this.dismiss();
+        }
+    };
+    Api.OnDeleteDevice deleteDevice=new Api.OnDeleteDevice() {
+        @Override
+        public void onResponse(String response) {
+            callback.onGroupDialogCallBack();
+        }
+
+        @Override
+        public void onError(VolleyError error) {
+
         }
     };
 }

@@ -241,7 +241,7 @@ public class Api {
     }
 
     public void createSensor(final HashMap<String, String> params) {
-        String function = context.getResources().getString(R.string.create_device_url);
+        String function = context.getResources().getString(R.string.create_sensor_url);
         String url = apiUrl + function;
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

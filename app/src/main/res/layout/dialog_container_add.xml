@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="title"
             android:textSize="24sp"
@@ -87,7 +87,9 @@
                 android:background="@drawable/edittext_darkgray"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#4FFFFFFF"
-                android:hint="內容物" />
+                android:hint="內容物"
+                android:inputType="text"
+                android:maxLines="1"/>
         </LinearLayout>
 
         <Button

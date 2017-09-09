@@ -9,5 +9,5 @@ import android.view.View;
 public interface MenuContent {
     void onChildClick(View v);
     void onChildLongClick(View v);
-    void onGroupDialogCallBack(String type);
+    void onGroupDialogCallBack();
 }
