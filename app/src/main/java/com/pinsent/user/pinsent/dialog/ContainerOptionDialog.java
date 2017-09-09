@@ -48,20 +48,37 @@ public class ContainerOptionDialog extends DialogFragment{
         preferences=new LoginPreferences(getActivity());
         update.setOnClickListener(updateClick);
         delete.setOnClickListener(deleteClick);
-
+        api.setOnDeleteSensor(deleteSensor);
     }
     View.OnClickListener updateClick=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            ContainerUpdateDialog containerUpdateDialog=new ContainerUpdateDialog();
+            containerUpdateDialog.setArguments(bundle);
+            containerUpdateDialog.show(getFragmentManager(),ContainerUpdateDialog.class.getSimpleName());
             ContainerOptionDialog.this.dismiss();
         }
     };
     View.OnClickListener deleteClick=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            HashMap hashMap=new HashMap();
+            hashMap.put("userID",preferences.getUserId());
+            hashMap.put("deviceID",((ArrayList<HashMap<String,String>>)bundle.get("data")).get(bundle.getInt("group")).get("id"));
+            hashMap.put("containerPosition",((ArrayList<HashMap<String, ArrayList<DataStruct>>>)bundle.get("data")).get(bundle.getInt("group")).get("data").get(bundle.getInt("child")).getContainerPosition());
+            api.deleteSensor(hashMap);
             ContainerOptionDialog.this.dismiss();
         }
     };
+    Api.OnDeleteSensor deleteSensor=new Api.OnDeleteSensor() {
+        @Override
+        public void onResponse(String response) {
+            callBack.onGroupDialogCallBack();
+        }
 
+        @Override
+        public void onError(VolleyError error) {
+
+        }
+    };
 }

@@ -44,10 +44,8 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-//        simulation();
         init();
         findview();
-//        setAdapter();
     }
 
     @Override
@@ -63,32 +61,6 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
         dataList = new ArrayList<>();
         api = new Api(this);
         mLoginPreferences = new LoginPreferences(this);
-
-
-    }
-
-    private void simulation() {
-        dataList = new ArrayList();
-        for (int i = 0; i < 2; i++) {
-            HashMap hashMap = new HashMap();
-            ArrayList arrayList = new ArrayList();
-            for (int j = 0; j < 4; j++) {
-                DataStruct dataStruct = new DataStruct();
-                dataStruct.setContainerPosition(String.valueOf(j));
-                if (i == 0) {
-                    dataStruct.setContainerName("沐浴乳" + j + "號");
-                } else {
-                    dataStruct.setContainerName("洗髮精" + j + "號");
-                }
-                dataStruct.setPercent(76);
-                dataStruct.setBrand("apple");
-                arrayList.add(dataStruct);
-            }
-            hashMap.put("title", "title" + i + "號");
-            hashMap.put("data", arrayList);
-            dataList.add(hashMap);
-        }
-
     }
 
     private void findview() {
@@ -150,7 +122,6 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
         }
     };
 
-
     private View.OnClickListener addDeviceClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -195,7 +166,7 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
 
     @Override
     public void onChildClick(View v) {
-        ((TextView) v.findViewById(R.id.list_id)).setText("群組：" + ((HashMap) v.getTag()).get("group") + " 容器：" + ((HashMap) v.getTag()).get("child") + "click");
+//        ((TextView) v.findViewById(R.id.list_id)).setText("群組：" + ((HashMap) v.getTag()).get("group") + " 容器：" + ((HashMap) v.getTag()).get("child") + "click");
     }
 
     @Override
