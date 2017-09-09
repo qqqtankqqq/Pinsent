@@ -50,10 +50,8 @@ public class MenuChildAdpater extends RecyclerView.Adapter<MenuChildAdpater.Item
         holder.itemView.setTag(hashMap);
         holder.itemView.setOnClickListener(onClick);
         holder.itemView.setOnLongClickListener(onLongClick);
-        ((TextView) holder.itemView.findViewById(R.id.list_percent_text)).setText(String.valueOf(dataList.get(position).getPercent()) + "%")
-        ;
+        ((TextView) holder.itemView.findViewById(R.id.list_percent_text)).setText(String.valueOf(dataList.get(position).getPercent()) + "%");
         ((BarStripView) holder.itemView.findViewById(R.id.list_bartchart_item)).setdata(dataList.get(position).getPercent());
-
     }
 
     @Override

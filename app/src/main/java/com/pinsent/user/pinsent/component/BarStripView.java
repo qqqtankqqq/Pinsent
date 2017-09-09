@@ -42,16 +42,12 @@ public class BarStripView extends View {
         invalidate();
     }
 
-    public int setW(double Per) {
-        return (int) ((Per > 100.0) ? parentX : ((parentX * Per) / 100));
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(0, 0, 2000, 55, backgroungPaint);
-        double doubleData = Double.valueOf((data / 100 * parentX));
-        canvas.drawRect(0, 0, setW(doubleData), 200, barPaint);
+        double doubleData = Double.valueOf((data * parentX / 100));
+        canvas.drawRect(0, 0, (int) doubleData, 200, barPaint);
     }
 
     @Override
