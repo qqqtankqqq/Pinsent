@@ -1,6 +1,8 @@
 package com.pinsent.user.pinsent.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.pinsent.user.pinsent.core.ActivityLauncher;
 import com.pinsent.user.pinsent.dialog.ContainerOptionDialog;
 import com.pinsent.user.pinsent.dialog.DeviceOptionDialog;
 import com.pinsent.user.pinsent.model.DataStruct;
+import com.pinsent.user.pinsent.model.GetListThread;
 import com.pinsent.user.pinsent.model.LoginPreferences;
 import com.pinsent.user.pinsent.model.adapter.MenuGroupAdapter;
 import com.pinsent.user.pinsent.model.network.Api;
@@ -39,6 +42,41 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
     private LoginPreferences mLoginPreferences;
     private ArrayList<HashMap<String, ArrayList<DataStruct>>> dataList;
     private Api api;
+    private GetListThread getListThread;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 1) {
+                try {
+                    dataList.clear();
+                    JSONArray jsonArray = new JSONArray(String.valueOf(msg.obj));
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        HashMap hashMap = new HashMap();
+                        ArrayList arrayList = new ArrayList();
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        JSONArray jsonArray1 = jsonObject.getJSONArray("data");
+                        for (int j = 0; j < jsonArray1.length(); j++) {
+                            JSONObject jsonObject1 = jsonArray1.getJSONObject(j);
+                            DataStruct dataStruct = new DataStruct();
+                            dataStruct.setContainerName(jsonObject1.getString("containerName"));
+                            dataStruct.setContainerPosition(jsonObject1.getString("containerPosition"));
+                            dataStruct.setBrand(jsonObject1.getString("brand"));
+                            dataStruct.setPercent(jsonObject1.getInt("percent"));
+                            arrayList.add(dataStruct);
+                        }
+                        hashMap.put("name", jsonObject.getString("deviceName"));
+                        hashMap.put("id", jsonObject.get("deviceID"));
+                        hashMap.put("data", arrayList);
+                        dataList.add(hashMap);
+                    }
+                    setAdapter();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +93,14 @@ public class MenuActivity extends AppCompatActivity implements MenuContent {
         data.put("userID", mLoginPreferences.getUserId());
         api.setOnSensorStatus(sensorStatus);
         api.getSensorStatus(data);
+        getListThread = new GetListThread(handler, api, mLoginPreferences.getUserId());
+        getListThread.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getListThread = null;
     }
 
     private void init() {
