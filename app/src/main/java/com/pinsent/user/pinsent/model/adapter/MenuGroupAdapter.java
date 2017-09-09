@@ -32,9 +32,23 @@ public class MenuGroupAdapter extends BaseExpandableListAdapter {
         init();
     }
     public void init(){
-        expansion=new boolean[dataList.size()];
-        for (int i=0;i<dataList.size();i++){
-            expansion[i]=false;
+        if(expansion==null){
+            expansion=new boolean[dataList.size()];
+        }else if(dataList.size()>expansion.length){
+            boolean tmp[]=expansion;
+            expansion=new boolean[dataList.size()];
+            for (int i=0;i<tmp.length;i++){
+                expansion[i]=tmp[i];
+            }
+            for (int i=tmp.length;i<dataList.size();i++){
+                expansion[i]=false;
+            }
+        }else if(dataList.size()<expansion.length){
+            boolean tmp[]=expansion;
+            expansion=new boolean[dataList.size()];
+            for (int i=0;i<expansion.length;i++){
+                expansion[i]=tmp[i];
+            }
         }
     }
     @Override
