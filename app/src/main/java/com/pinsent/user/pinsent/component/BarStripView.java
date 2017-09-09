@@ -22,7 +22,7 @@ public class BarStripView extends View {
     private Paint barPaint;
     private int parentX;
     private int parentY;
-    private int data = 700;
+    private int data = 0;
 
 
     public BarStripView(Context context, AttributeSet attrs) {
@@ -37,6 +37,11 @@ public class BarStripView extends View {
         typedArray.recycle();
     }
 
+    public void setdata(int data) {
+        this.data = data;
+        invalidate();
+    }
+
     public int setW(double Per) {
         return (int) ((Per > 100.0) ? parentX : ((parentX * Per) / 100));
     }
@@ -45,8 +50,7 @@ public class BarStripView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(0, 0, 2000, 55, backgroungPaint);
-
-        double doubleData = Double.valueOf((data * 100 / parentX));
+        double doubleData = Double.valueOf((data / 100 * parentX));
         canvas.drawRect(0, 0, setW(doubleData), 200, barPaint);
     }
 

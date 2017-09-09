@@ -31,7 +31,7 @@ public class MenuGroupAdapter extends BaseExpandableListAdapter {
         this.dataList=dataList;
         init();
     }
-    private void init(){
+    public void init(){
         expansion=new boolean[dataList.size()];
         for (int i=0;i<dataList.size();i++){
             expansion[i]=false;
@@ -105,4 +105,5 @@ public class MenuGroupAdapter extends BaseExpandableListAdapter {
     public void setExpansion(int position){
         expansion[position]=!expansion[position];
     }
+
 }

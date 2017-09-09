@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
+    android:layout_marginTop="5dp"
     android:background="@drawable/layout_round"
     android:orientation="vertical">
 
@@ -41,7 +41,6 @@
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
-
         <com.pinsent.user.pinsent.component.BarStripView
             android:id="@+id/list_bartchart_item"
             android:layout_width="250dp"
@@ -49,10 +48,11 @@
             android:layout_marginTop="5dp" />
 
         <TextView
+            android:id="@+id/list_percent_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:text="76%"
             android:textColor="#ffffff" />
 
