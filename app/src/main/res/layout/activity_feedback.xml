@@ -5,6 +5,7 @@
     android:background="@drawable/background">
 
     <ImageView
+        android:id="@+id/title_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -15,8 +16,9 @@
         android:id="@+id/layout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_below="@id/title_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp">
 
         <TextView
             android:id="@+id/problem_feedback_text"
@@ -34,27 +36,18 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/edittext_darkgray"
             android:gravity="start"
+            android:hint="我們將儘快為您處理!"
             android:paddingLeft="10dp"
+            android:paddingRight="5dp"
             android:paddingTop="5dp"
-            android:singleLine="true"
-            android:textColor="#ffffff" />
-
-        <TextView
-            android:id="@+id/process_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/problem_feedback_edit_text"
-            android:layout_marginTop="10dp"
-            android:text="我們將儘快為您處理!"
             android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/option_feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/process_text"
-            android:layout_marginTop="5dp"
+            android:layout_below="@+id/problem_feedback_edit_text"
+            android:layout_marginTop="20dp"
             android:text="意見回饋："
             android:textColor="#ffffff" />
 
@@ -67,8 +60,8 @@
             android:background="@drawable/edittext_darkgray"
             android:gravity="start"
             android:paddingLeft="10dp"
+            android:paddingRight="5dp"
             android:paddingTop="5dp"
-            android:singleLine="true"
             android:textColor="#ffffff" />
 
         <Button
@@ -77,7 +70,7 @@
             android:layout_height="40dp"
             android:layout_below="@id/option_feedback_edit_text"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/green_button"
             android:text="SENT"
             android:textColor="#ffffff" />

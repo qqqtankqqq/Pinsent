@@ -73,7 +73,8 @@
             android:background="@drawable/edittext_darkgray"
             android:hint="內容物"
             android:paddingLeft="10dp"
-            android:singleLine="true" />
+            android:maxLines="1"
+            />
 
         <Button
             android:id="@+id/add_button"

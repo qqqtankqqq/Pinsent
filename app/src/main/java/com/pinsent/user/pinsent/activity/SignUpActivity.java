@@ -1,9 +1,11 @@
 package com.pinsent.user.pinsent.activity;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static android.R.attr.data;
+import static android.R.attr.password;
 
 /**
  * Created by hong on 2017/8/25.
@@ -58,6 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
         mSignUpAccount = (EditText) findViewById(R.id.sign_up_account);
         mSignUpPassword = (EditText) findViewById(R.id.sign_up_password);
         mSignUpButton = (Button) findViewById(R.id.sign_up_button);
+        mSignUpPassword.setTransformationMethod(new PasswordTransformationMethod());
     }
 
     private View.OnClickListener register = new View.OnClickListener() {
